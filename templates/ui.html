@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuroFetal AI</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f5f7fb;
+}
+
+/* BACK BUTTON */
+.back-btn{
+    position:absolute;
+    top:25px;
+    left:25px;
+    background:white;
+    padding:10px 18px;
+    border-radius:10px;
+    text-decoration:none;
+    color:#111827;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+    z-index:1000;
+}
+
+/* FORM */
+.form-page{
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.form-box{
+    width:500px;
+    background:white;
+    padding:40px;
+    border-radius:25px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.08);
+}
+
+.success{
+    text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HOME ================= -->
+{% if page == "home" %}
+<h1 style="text-align:center;padding-top:50px;">HOME PAGE</h1>
+{% endif %}
+
+<!-- ================= PATIENT ================= -->
+{% if page == "patient" %}
+
+<a href="/" class="back-btn">← Back</a>
+
+<div class="form-page">
+    <div class="form-box">
+        <h2>Patient Registration</h2>
+
+        <form method="POST">
+            <input type="text" name="name" placeholder="Patient Name"><br><br>
+            <input type="text" name="age" placeholder="Age"><br><br>
+            <input type="text" name="months" placeholder="Months Pregnant"><br><br>
+            <input type="text" name="contact" placeholder="Emergency Contact"><br><br>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</div>
+
+{% endif %}
+
+<!-- ================= DOCTOR ================= -->
+{% if page == "doctor" %}
+
+<a href="/" class="back-btn">← Back</a>
+
+<div class="form-page">
+    <div class="form-box">
+        <h2>Doctor Dashboard</h2>
+
+        <p>Upload brain scan and analyze results here.</p>
+
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="image"><br><br>
+            <button type="submit">Analyze Scan</button>
+        </form>
+
+    </div>
+</div>
+
+{% endif %}
+
+<!-- ================= RESULT ================= -->
+{% if page == "result" %}
+
+<a href="/doctor" class="back-btn">← Back</a>
+
+<div class="form-page">
+    <div class="form-box success">
+
+        <h1>{{ result }}</h1>
+
+        <img src="{{ image_url }}" style="width:100%;border-radius:15px;">
+
+        <h3>Patient: {{ patient }}</h3>
+
+        <p>{{ advice }}</p>
+
+        <br><br>
+
+        <a href="/doctor">
+            <button>Analyze Another Scan</button>
+        </a>
+
+    </div>
+</div>
+
+{% endif %}
+
+</body>
+</html>

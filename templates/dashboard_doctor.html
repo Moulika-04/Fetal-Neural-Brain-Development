@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+<h1>Doctor Dashboard</h1>
+
+<table border="1" cellpadding="10">
+<tr>
+    <th>Patient</th>
+    <th>Image</th>
+    <th>Result</th>
+</tr>
+
+{% for row in data %}
+<tr>
+    <td>{{ row[1] }}</td>
+    <td>
+        <img src="/{{ row[2] }}" width="150">
+    </td>
+    <td>{{ row[3] }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/logout">
+    <button>Logout</button>
+</a>
+
+</div>
+
+</body>
+</html>

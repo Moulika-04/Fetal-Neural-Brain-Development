@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+<h2>Upload Fetal Brain Ultrasound</h2>
+
+<form action="/predict" method="POST" enctype="multipart/form-data">
+
+<input type="file" name="file" required>
+<br><br>
+
+<button type="submit">Predict</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

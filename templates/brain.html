@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Fetal Brain System</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Segoe UI;
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:white;
+}
+
+.container{
+    width:500px;
+    margin:80px auto;
+    background: rgba(255,255,255,0.1);
+    padding:30px;
+    border-radius:15px;
+    backdrop-filter: blur(10px);
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+input,select{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:none;
+    border-radius:8px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:linear-gradient(45deg,#00c6ff,#0072ff);
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    transform:scale(1.05);
+    transition:0.3s;
+}
+
+img{
+    width:300px;
+    border-radius:10px;
+}
+
+/* NAV */
+.nav{
+    text-align:center;
+    padding:20px;
+    font-size:24px;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="nav">🧠 AI Fetal Brain Health System</div>
+
+<!-- ================= HOME ================= -->
+{% if page == "home" %}
+
+<div class="container">
+    <h2>Welcome</h2>
+    <a href="/patient"><button>Patient Login</button></a><br><br>
+    <a href="/doctor"><button>Doctor Login</button></a>
+</div>
+
+<!-- ================= PATIENT ================= -->
+{% elif page == "patient" %}
+
+<div class="container">
+<h2>Patient Registration</h2>
+
+<form method="POST">
+<input name="name" placeholder="Name">
+<input name="age" placeholder="Age">
+<input name="months" placeholder="Pregnancy Months">
+<input name="contact" placeholder="Emergency Contact">
+<button type="submit">Submit</button>
+</form>
+</div>
+
+<!-- ================= PATIENT DONE ================= -->
+{% elif page == "patient_done" %}
+
+<div class="container">
+<h2>Patient Saved Successfully</h2>
+<a href="/"><button>Back</button></a>
+</div>
+
+<!-- ================= DOCTOR ================= -->
+{% elif page == "doctor" %}
+
+<div class="container">
+<h2>Doctor Panel</h2>
+
+<form action="/predict" method="POST" enctype="multipart/form-data">
+<input name="name" placeholder="Patient Name">
+<input type="file" name="file">
+<button type="submit">Predict</button>
+</form>
+</div>
+
+<!-- ================= RESULT ================= -->
+{% elif page == "result" %}
+
+<div class="container">
+<h2>Prediction Result</h2>
+
+<h3>Patient: {{name}}</h3>
+
+<img src="/{{image}}">
+
+<h2>{{result}}</h2>
+
+<p>{{advice}}</p>
+
+<a href="/doctor"><button>Back</button></a>
+</div>
+
+{% endif %}
+
+</body>
+</html>

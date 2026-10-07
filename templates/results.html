@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+<h1>Prediction Result</h1>
+
+<img src="/{{ image }}" width="300">
+
+<h2>Result: {{ result }}</h2>
+
+<h3>Precautions</h3>
+<ul>
+{% for p in precautions %}
+<li>{{ p }}</li>
+{% endfor %}
+</ul>
+
+<h3>Recommended Doctors</h3>
+<ul>
+{% for d in doctors %}
+<li>{{ d }}</li>
+{% endfor %}
+</ul>
+
+<a href="/patient_dashboard">
+<button>Back</button>
+</a>
+
+</div>
+
+</body>
+</html>
